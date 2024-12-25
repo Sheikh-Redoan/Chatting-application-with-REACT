@@ -3,6 +3,7 @@ import { FcGoogle } from "react-icons/fc";
 import { IoMdEyeOff } from "react-icons/io";
 import { FaEyeSlash } from "react-icons/fa";
 import { FaEye } from "react-icons/fa";
+import { Link } from 'react-router-dom';
 
 import login from "../../assets/login.png";
 const Login = () => {
@@ -71,7 +72,7 @@ const Login = () => {
                 <p className="bg-red-400 max-w-[368px] rounded font-pops">{passeorderr}</p>
             </div>
             <a onClick={handlelogin} href="#" className="py-[26px] px-[122px] text-white text-[20.897px] not-italic font-semibold leading-[normal] rounded-[8.707px] bg-[#5f34f5] mb-[44px] mt-[55px] inline-block">Login to Continue</a>
-            <a href="#" className="text-[#03014C] block text-[13.338px] text-left not-italic font-normal leading-[normal] font-sans ">Don’t have an account?<span className="text-[#EA6C00]  text-[13.338px] not-italic font-bold  leading-[normal] font-sans"> Sign Up</span></a>
+            <a href="#" className="text-[#03014C] block text-[13.338px] text-left not-italic font-normal leading-[normal] font-sans ">Don’t have an account?<span className="text-[#EA6C00]  text-[13.338px] not-italic font-bold  leading-[normal] font-sans"> <Link to="/">Sign Up</Link></span></a>
           </div>
         </div>
         <div className="w-1/2 flex justify-center items-center">
