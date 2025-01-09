@@ -13,6 +13,8 @@ import {
 import login from "../../assets/login.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { userLoginInfo } from "../../Slices/userSlice.js";
 
 const Login = () => {
   const auth = getAuth();
@@ -22,6 +24,7 @@ const Login = () => {
   const [passeorderr, setPasseorderr] = useState("");
   const [showPassword, setShopPassword] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handelemail = (e) => {
     setEmail(e.target.value);
@@ -56,6 +59,11 @@ const Login = () => {
     if (email) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
+          dispatch(userLoginInfo(userCredential.user));
+          localStorage.setItem(
+            "userLoginInfo",
+            JSON.stringify(userCredential.user)
+          );
           toast.success("login done");
           setTimeout(() => {
             navigate("/home");

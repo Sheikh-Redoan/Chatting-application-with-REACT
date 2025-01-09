@@ -8,7 +8,9 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   sendEmailVerification,
+  updateProfile,
 } from "firebase/auth";
+import { getDatabase, ref, set } from "firebase/database";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { InfinitySpin } from "react-loader-spinner";
@@ -23,7 +25,7 @@ const Registrarrion = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const auth = getAuth();
-
+  const db = getDatabase();
   const handleEmail = (e) => {
     setEmail(e.target.value);
     setEmainerr("");
@@ -69,19 +71,29 @@ const Registrarrion = () => {
 
     if (email && fullname && password) {
       createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-          sendEmailVerification(auth.currentUser).then(() => {
-            setLoading(true);
-            toast.success("Registration Successfull");
-            setEmail("");
-            setFullname("");
-            setpassword("");
-            setTimeout(() => {
-              navigate("/login");
-            }, 3000);
+        .then((user) => {
+          updateProfile(auth.currentUser, {
+            displayName: fullname,
+          }).then(() => {
+            console.log(user);
+            
+            sendEmailVerification(auth.currentUser).then(() => {
+              setLoading(true);
+              toast.success("Registration Successfull");
+              setEmail("");
+              setFullname("");
+              setpassword("");
+              setTimeout(() => {
+                navigate("/login");
+              }, 3000);
+            }).then(()=>{
+              set(ref(db, 'users/' + user.user.uid), {
+                username: user.user.displayName,
+                email: user.user.email,
+              });
+            })
           });
-        })
-        .catch((error) => {
+        }).catch((error) => {
           const errorCode = error.code;
           if (errorCode.includes("auth/email-already-in-use")) {
             toast.error("This email is already in use");
@@ -111,7 +123,7 @@ const Registrarrion = () => {
             <h2 className=" text-[#11175D] text-[34.401px] not-italic font-bold leading-[normal] font-nuni">
               Get started with easily register
             </h2>
-            <p className="text-[#11175D] text-black text-[20.641px] not-italic font-normal leading-[normal] font-nuni mb-[61px]">
+            <p className="text-[#11175D] text-[20.641px] not-italic font-normal leading-[normal] font-nuni mb-[61px]">
               Free register and you can enjoy it
             </p>
             <div className="relative mb-[34px]">

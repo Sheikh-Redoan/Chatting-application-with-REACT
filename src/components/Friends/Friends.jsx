@@ -24,11 +24,6 @@ const Friends = ({className}) => {
                 <a href="#" className='w-[87px] h-[30px] rounded-[5px] bg-[#5f35f5] text-white text-xl not-italic font-semibold leading-[normal] font-pops text-center'>Friend</a>
             </div>
             {/* Friends Profile view  */}
-
-
-
-
-
         </div>
     </div>
   )

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import verifynav from "../../assets/verifynav.png";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import Friends from "../../components/Friends/Friends";
 import GrorpList from "../../components/GroupList/GrorpList";
@@ -6,20 +7,95 @@ import UserList from "../../components/UserList/UserList";
 import FriendRequest from "../../components/FriendRequest/FriendRequest";
 import MyGroups from "../../components/MyGroups/MyGroups";
 import BlockedUsers from "../../components/BlockedUsers/BlockedUsers";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Home = () => {
+    const auth = getAuth();
+  const data = useSelector((state) => state.userDetails.userInfo);
+  const navigate = useNavigate();
+  const [verify , setVerify] = useState(false);
+  useEffect(()=>{
+    if(!data){
+      navigate("/login");
+    }
+  })
+
+  onAuthStateChanged(auth, (user) =>{
+    if(user.emailVerified == true){
+        setVerify(true)
+    }else{
+      setVerify(false)
+    }
+  })
+
   return (
-    <div className="flex p-[35px]  box-border gap-x-[22px] gap-y-[43px]">
-      <Sidebar className="w-[10%]"></Sidebar>
-      <div className="w-full flex flex-wrap gap-x-[22px] gap-y-[43px]">
-        <GrorpList className="w-[32%] h-[451px]" />
-        <Friends className="w-[32%] h-[451px]"></Friends>
-        <UserList className="w-[32%] h-[451px]"/>
-        <FriendRequest className="w-[32%] h-[451px]"/>
-        <MyGroups  className="w-[32%] h-[451px]" />
-        <BlockedUsers  className="w-[32%] h-[451px]"/>
+    <>
+      {
+        verify ? <div className="flex p-[35px]  box-border gap-x-[22px] gap-y-[43px]">
+        <Sidebar className="w-[166px]"></Sidebar>
+        <div className="w-full flex flex-wrap gap-x-[22px] gap-y-[43px]">
+          <GrorpList className="w-[433px] h-[451px]" />
+          <Friends className="w-[433px] h-[451px]"></Friends>
+          <UserList className="w-[433px] h-[451px]" />
+          <FriendRequest className="w-[433px] h-[451px]" />
+          <MyGroups className="w-[433px] h-[451px]" />
+          <BlockedUsers className="w-[433px] h-[451px]" />
+        </div>
+      </div> : <div className="max-w-[29.375em] w-full rounded-xl bg-white mx-auto border border-white flex flex-col">
+      <div className="flex flex-col border-[2px] border-solid border-[#5e34f580] rounded-[20px] overflow-hidden pb-[30px] drop-shadow">
+        <img 
+          src={verifynav} 
+          alt="Logo"
+        />
+        <div className="w-4/5 mx-auto mt-8 mb-8">
+          <p className="tracking-widest text-lg mt-0 mb-2">WELCOME</p>
+          <p className="text-4xl font-semibold tracking-tight mt-0">Chatting App</p>
+          <p className="text-base mt-2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc gravida erat leo, ut tincidunt felis interdum vel. Phasellus quis rutrum est. Curabitur quis dolor nisi.
+          </p>
+          <a 
+            href="https://mail.google.com/mail/u/0/#inbox" 
+            className="bg-[#5F34F5] text-white rounded-md px-6 py-4 text-lg text-center mt-12 block"
+          >
+            Verify Email Address
+          </a>
+        </div>
+        <div className="flex flex-col justify-around mx-auto max-w-[200px] mt-7">
+          <a 
+            href="#" 
+            className="text-black text-center mb-2"
+          >
+            Chatting-App.io
+          </a>
+          <div className="flex space-x-2">
+            <img 
+              src="https://res.cloudinary.com/marykaystuff/image/upload/v1654783962/images/tradefarm/znh7kihdxwrvhfiakish.svg" 
+              alt="Icon 1" 
+              className="w-[39.3px]"
+            />
+            <img 
+              src="https://res.cloudinary.com/marykaystuff/image/upload/v1654783962/images/tradefarm/m6q7n9zsbbugxuxomu6u.svg" 
+              alt="Icon 2" 
+              className="w-[39.3px]"
+            />
+            <img 
+              src="https://res.cloudinary.com/marykaystuff/image/upload/v1654783962/images/tradefarm/a8lmondoqbs47bjwin5k.svg" 
+              alt="Icon 3" 
+              className="w-[39.3px]"
+            />
+            <img 
+              src="https://res.cloudinary.com/marykaystuff/image/upload/v1654783962/images/tradefarm/ifd0qtokg2vv1fll59ta.svg" 
+              alt="Icon 4" 
+              className="w-[39.3px]"
+            />
+          </div>
+        </div>
       </div>
     </div>
+      }
+    </>
   );
 };
 
