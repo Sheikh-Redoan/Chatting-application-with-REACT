@@ -1,23 +1,30 @@
 import "./App.css";
 import { createBrowserRouter, RouterProvider, createRoutesFromElements, Route } from "react-router-dom";
-import Login from "./pages/Login/Login";
-import Registrarrion from "./pages/Registration/Registrarrion";
-import firebaseConfig from "./FirebaseAuthentication/FirebaseAuthentication";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/login";
+import Messages from "./Pages/Messages/Messages";
+import Profile from "./Pages/Profile/Profile";
+import Registration from "./Pages/Registration/Registration";
+import UserFriend from "./Pages/UserFriend/UserFriend";
 import ForgotPassword from "./pages/ForgotPassword/ForgotPassword";
-import Home from "./pages/Home/Home";
+import firebaseConfig from "./FirebaseAuthentication/FirebaseAuthentication";
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="/" element={<Registrarrion/>}/>
-      <Route path="/login" element={<Login/>}/>
-      <Route path="/forgotpassword" element={<ForgotPassword/>}/>
-      <Route path="/home" element={<Home/>}/>
+      <Route path="/" element={<Registration />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgotpassword" element={<ForgotPassword />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/message" element={<Messages />} />
+      <Route path="/profile" element={<Profile />} />
+      <Route path="/userfriend" element={<UserFriend />} />
     </Route>
   )
 );
 
-function App() {  
+function App() {
   return (
     <>
       <RouterProvider router={router} />

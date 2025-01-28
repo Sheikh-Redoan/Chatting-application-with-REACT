@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
 import verifynav from "../../assets/verifynav.png";
-import Sidebar from "../../components/Sidebar/Sidebar";
-import Friends from "../../components/Friends/Friends";
-import GrorpList from "../../components/GroupList/GrorpList";
-import UserList from "../../components/UserList/UserList";
-import FriendRequest from "../../components/FriendRequest/FriendRequest";
-import MyGroups from "../../components/MyGroups/MyGroups";
-import BlockedUsers from "../../components/BlockedUsers/BlockedUsers";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Container from "../../components/Container/Container";
+import Navbar from "../../components/Navbar/Navbar";
+import User from "../../components/User/User";
+import MyGroup from "../../components/MyGroup/MyGroup";
+import News from "../../components/News/News";
+import BaseProfile from "../../components/BaseProfile/BaseProfile";
+import Friends from "../../components/Friends/Friends";
 
 const Home = () => {
-    const auth = getAuth();
+  const auth = getAuth();
   const data = useSelector((state) => state.userDetails.userInfo);
   const navigate = useNavigate();
   const [verify , setVerify] = useState(false);
@@ -33,17 +33,24 @@ const Home = () => {
   return (
     <>
       {
-        verify ? <div className="flex p-[35px]  box-border gap-x-[22px] gap-y-[43px]">
-        <Sidebar className="w-[166px]"></Sidebar>
-        <div className="w-full flex flex-wrap gap-x-[22px] gap-y-[43px]">
-          <GrorpList className="w-[433px] h-[451px]" />
-          <Friends className="w-[433px] h-[451px]"></Friends>
-          <UserList className="w-[433px] h-[451px]" />
-          <FriendRequest className="w-[433px] h-[451px]" />
-          <MyGroups className="w-[433px] h-[451px]" />
-          <BlockedUsers className="w-[433px] h-[451px]" />
+        verify ? 
+        <div className="bg-[#1A1A1A] h-screen text-[#fff] relative flex justify-center">
+      <Navbar></Navbar>
+      <Container className='flex justify-center items-start flex-wrap'>
+        <div>
+            <User></User>
+            <MyGroup></MyGroup>
         </div>
-      </div> : <div className="max-w-[29.375em] w-full rounded-xl bg-white mx-auto border border-white flex flex-col">
+        <div>
+          <News></News>
+        </div>
+        <div>
+          <BaseProfile></BaseProfile>
+          <Friends></Friends>
+        </div>
+      </Container>
+    </div>
+    : <div className="max-w-[29.375em] w-full rounded-xl bg-white mx-auto border border-white flex flex-col">
       <div className="flex flex-col border-[2px] border-solid border-[#5e34f580] rounded-[20px] overflow-hidden pb-[30px] drop-shadow">
         <img 
           src={verifynav} 
@@ -96,6 +103,16 @@ const Home = () => {
     </div>
       }
     </>
+
+
+
+
+
+
+
+
+
+    
   );
 };
 

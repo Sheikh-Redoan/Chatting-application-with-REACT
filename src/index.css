@@ -1,3 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@theme {
+    --font-rus: "Russo One", "sans-serif"; 
+    --font-pops: "Poppins", "sans-serif"; 
+    --color-regal: 0 2px 3px #00E7FE;
+}
+
+.container-secoundary{
+    max-width: 1250px !important;
+}
