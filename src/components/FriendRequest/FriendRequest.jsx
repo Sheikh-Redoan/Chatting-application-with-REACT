@@ -29,17 +29,19 @@ const FriendRequest = () => {
     });
   }, [data, db]);
 
+  console.log(friendRequestList);
+  
   const acceptFriend = (item) => {
     // Add the friend to the 'Friends' list
     const friendsRef = ref(db, 'Friends/');
     push(friendsRef, {
       sendername: item.sendername,
       senderid: item.senderid,
-      recivername: item.recivername,
-      reciverid: item.reciverid,
       senderimage: item.senderimage,
       sendercrown: item.sendercrown,
       sendercolor: item.sendercolor,
+      recivername: item.recivername,
+      reciverid: item.reciverid,
       // Add other fields if necessary
     }).then(() => {
       // Remove the accepted request from 'FriendRequest' list

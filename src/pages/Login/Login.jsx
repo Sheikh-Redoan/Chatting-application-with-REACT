@@ -173,7 +173,7 @@ const Login = () => {
               )}
 
 
-            <p onClick={handlelogin} className='text-[#252424] cursor-pointer text-[25px] not-italic font-normal leading-[normal] font-rus  rounded-[40px] border border-[#2BEC65] bg-gradient-to-r from-[#2BEC65] to-[#0D6F3F] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex  justify-center items-center py-[10px] gap-[10px] mt-[30px]'>Sign UP <LiaSignInAltSolid  className="w-[30px] h-[30px]"/></p>
+            <p onClick={handlelogin} className='text-[#252424] cursor-pointer text-[25px] not-italic font-normal leading-[normal] font-rus  rounded-[40px] border border-[#2BEC65] bg-gradient-to-r from-[#2BEC65] to-[#0D6F3F] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] flex  justify-center items-center py-[10px] gap-[10px] mt-[30px]'>Sign IN <LiaSignInAltSolid  className="w-[30px] h-[30px]"/></p>
 
 
           </div>
