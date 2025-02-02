@@ -36,15 +36,15 @@ const Home = () => {
         verify ? 
         <div className="bg-[#1A1A1A] h-screen text-[#fff] relative flex justify-center">
       <Navbar></Navbar>
-      <Container className='flex justify-center items-start flex-wrap'>
-        <div>
+      <Container className='flex justify-center items-start flex-wrap max-sm:mx-0 max-sm:w-full max-sm:overflow-y-hidden'>
+        <div className="max-sm:hidden">
             <User></User>
             <MyGroup></MyGroup>
         </div>
-        <div>
+        <div className="order-1">
           <News></News>
         </div>
-        <div>
+        <div className="max-sm:hidden">
           <BaseProfile></BaseProfile>
           <Friends></Friends>
         </div>

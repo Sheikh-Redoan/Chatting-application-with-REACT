@@ -5,6 +5,9 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import lockBG from "../../assets/lock-bg.jpg";
+import logo from "../../assets/logo.png";
+import Container from "../../components/Container/Container";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -38,7 +41,10 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div className="font-pops bg-gray-400">
+    <div
+      className="bg-cover bg-no-repeat bg-center h-screen max-sm:h-screen font-pops"
+      style={{ backgroundImage: `url(${lockBG})` }}
+    >
       <ToastContainer
         position="top-center"
         autoClose={3000}
@@ -52,73 +58,72 @@ const ForgotPassword = () => {
         theme="dark"
         transition:Bounce
       />
-      <div className="container mx-auto">
-        <div className="flex justify-center items-center h-screen px-6">
-          <div className="w-full xl:w-3/4 lg:w-11/12 flex">
-            <div
-              className="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg bg-[]"
-              style={{ backgroundImage: `url(${Forgot})` }}
-            />
 
-            <div className="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-              <div className="px-8 mb-4 text-center">
-                <h3 className="pt-4 mb-2 text-2xl">Forgot Your Password?</h3>
-                <p className="mb-4 text-sm text-gray-700">
-                  We get it, stuff happens. Just enter your email address below
-                  and we'll send you a link to reset your password!
-                </p>
-              </div>
-              <form className="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-                <div className="mb-4">
-                  <label
-                    className="block mb-2 text-sm font-bold text-gray-700"
-                    for="email"
-                  >
-                    Email
-                  </label>
-                  <input
-                    onChange={handelemail}
-                    className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-                    id="email"
-                    type="email"
-                    placeholder="Enter Email Address..."
-                  />
-                </div>
-                <div className="mb-6 text-center">
-                  <button
-                    onClick={handelReset}
-                    className="w-full px-4 py-2 font-bold text-white bg-[#5f35f57e] rounded-full hover:bg-[#5F35F5] focus:outline-none focus:shadow-outline"
-                    type="button"
-                  >
-                    Reset Password
-                  </button>
-                </div>
-                <hr className="mb-6 border-t" />
-                <div className="text-center">
-                  <Link to="/">
-                    <a
-                      className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                      href="./register.html"
-                    >
-                      Create an Account!
-                    </a>
-                  </Link>
-                </div>
-                <div className="text-center">
-                  <Link to="/login">
-                    <a
-                      className="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-                      href="./index.html"
-                    >
-                      Already have an account? Login!
-                    </a>
-                  </Link>
-                </div>
-              </form>
+      {/* Header */}
+      <div className="flex items-center px-[60px] py-[15px] max-sm:py-[4px] max-sm:px-[10px]">
+        <img src={logo} className="w-[50px] h-[50px]" alt="Logo" />
+        <h3 className="text-white text-[25px] not-italic font-normal leading-[normal] font-rus">
+          GamerGO
+        </h3>
+      </div>
+
+      <Container className="flex justify-center items-center max-sm:justify-center">
+        <div className="shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[11.149999618530273px] rounded-[50px] w-[550px] bg-[rgba(255,255,255,0.2)] p-[40px] max-sm:backdrop-blur-[2px] max-sm:p-[30px] max-sm:w-[400px] max-sm:mb-[100px]">
+          <h2
+            className="text-center text-[40px] font-[400] leading-[50px] 
+                     bg-gradient-to-b from-[#FF9B00] to-[#FFA300] 
+                     bg-clip-text text-transparent font-rus 
+                     max-sm:text-[30px] max-sm:leading-[40px] mb-6"
+          >
+            Password Recovery
+          </h2>
+
+          <div className="space-y-6">
+            <div className="relative">
+              <input
+                onChange={handelemail}
+                type="email"
+                className="w-full rounded-[50px] bg-gradient-to-r from-[#3C3C3C] to-[#3C3C3A] 
+                      shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-[#6C6C6C] text-[25px] 
+                      not-italic font-normal leading-[normal] font-rus px-[35px] py-[15px] 
+                      max-sm:text-xs max-sm:px-5 max-sm:py-2.5"
+                placeholder="Enter your registered email"
+              />
+            </div>
+
+            <button
+              onClick={handelReset}
+              className="w-full rounded-[40px] border border-[#C06C24] 
+                   bg-gradient-to-r from-[#FF9C00] to-[#FF8000] 
+                   shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] text-[#252424] 
+                   text-[20px] font-rus py-[15px] hover:opacity-90 
+                   transition-opacity max-sm:text-[15px] max-sm:py-[10px]"
+            >
+              Reset Password
+            </button>
+
+            <div className="text-center space-y-4">
+              <Link to="/login" className="block">
+                <span
+                  className="text-[#fff] text-[18px] font-pops hover:text-[#FF9B00] 
+                            transition-colors max-sm:text-[15px]"
+                >
+                  Remember your password? Sign In
+                </span>
+              </Link>
+
+              <Link to="/" className="block">
+                <span
+                  className="text-[#FF9B00] text-[18px] font-rus 
+                            hover:text-[#FF8000] transition-colors max-sm:text-[15px]"
+                >
+                  Create new account
+                </span>
+              </Link>
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </div>
   );
 };

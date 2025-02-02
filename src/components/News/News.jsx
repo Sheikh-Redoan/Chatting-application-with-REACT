@@ -30,7 +30,7 @@ const News = () => {
   };
 
   return (
-    <div className="w-[594px] h-[773px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[11.149999618530273px] rounded-[20px] bg-[#ffffff33] overflow-hidden mx-[5px]">
+    <div className="w-[594px] h-[773px] shadow-[0px_4px_4px_0px_rgba(0,0,0,0.25)] backdrop-blur-[11.149999618530273px] rounded-[20px] bg-[#ffffff33] overflow-hidden mx-[5px] max-sm:w-full max-sm:h-full max-sm:rounded-[0px]">
         <CustomScroll>
       <div className="w-[594px] h-[773px] px-[14px] py-[14px] ">
         {/* banner slider */}
